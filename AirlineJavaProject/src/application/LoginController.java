@@ -2,12 +2,16 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -88,6 +92,14 @@ public class LoginController {
                 		if(password.equals(databasePassword)) {
                 			//if password correct
                 			message_text.setText("Login successful!");
+                			
+                			Stage stage = (Stage) message_text.getScene().getWindow();
+                            Parent root = FXMLLoader.load(getClass().getResource("CustomerHomePage.fxml"));
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.setTitle("Home Page");
+                            stage.show();
+                            
                 			break;
                 			
                 		}else {
